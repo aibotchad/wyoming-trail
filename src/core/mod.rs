@@ -3,6 +3,7 @@
 
 pub mod config;
 pub mod data;
+pub mod defs;
 pub mod game;
 pub mod map_graph;
 pub mod party;

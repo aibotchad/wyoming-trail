@@ -1,118 +1,96 @@
-//! Bundled (compile-time embedded) game data. `include_str!` keeps the game
-//! fully offline at runtime — no fetch, no network.
+//! Bundled (compile-time embedded) game content.
+//!
+//! `include_str!` keeps the game fully offline at runtime — no fetch, no network.
+//! The raw JSON constants are the single source of truth for content; the
+//! `load_*` functions parse them once into the typed tables in `crate::core::defs`.
+//!
+//! Data-oriented layout: content is plain data (see `defs`), parsed into
+//! deterministic tables keyed by id/terrain. Rules modules operate on those
+//! tables — they never parse JSON themselves.
+//!
+//! No web-sys / js-sys / wasm-bindgen: this must compile and test on a native
+//! target as well as wasm32.
 
-/// map.json — the Wyoming road graph.
+// Foundation layer: consumed by M2 (event selection), not yet by game logic —
+// silence dead-code lints here, not globally.
+#![allow(dead_code)]
+
+use crate::core::defs::{must_parse, DialogueBook, EventTables, ItemIndex, NpcTables};
+
+/// map.json — the Wyoming road graph (consumed by `map_graph::MapGraph`).
 pub const MAP_JSON: &str = include_str!("../../assets/data/map.json");
 
-/// events.json — random event tables keyed by name (see Road::events_table).
-#[allow(dead_code)] // first consumer: M2 (random events).
+/// events.json — random-event tables keyed by terrain id.
 pub const EVENTS_JSON: &str = include_str!("../../assets/data/events.json");
 
-/// items.json — purchasable / carryable items.
-#[allow(dead_code)] // first consumer: M3 (shops).
+/// items.json — purchasable / carryable items keyed by id.
 pub const ITEMS_JSON: &str = include_str!("../../assets/data/items.json");
 
-/// npcs.json — encounter definitions keyed by name (see Road::npc_table).
-#[allow(dead_code)] // first consumer: M2 (NPC encounters).
+/// npcs.json — encounter definitions keyed by terrain id.
 pub const NPCS_JSON: &str = include_str!("../../assets/data/npcs.json");
 
-/// dialogue.json — dialogue trees for NPC encounters.
-#[allow(dead_code)] // first consumer: M2 (dialogue).
+/// dialogue.json — dialogue lines keyed by node / npc / special key.
 pub const DIALOGUE_JSON: &str = include_str!("../../assets/data/dialogue.json");
 
-/// Parse events.json as { table: [ {name, ...} ] }.
-#[allow(dead_code)] // first consumer: M2 (random events).
-pub fn load_events() -> std::collections::HashMap<String, Vec<serde_json::Value>> {
-    let v: serde_json::Value =
-        serde_json::from_str(EVENTS_JSON).expect("events.json: must be valid JSON at build time");
-    let obj = v
-        .as_object()
-        .expect("events.json: top level must be an object");
-    obj.iter()
-        .map(|(k, v)| {
-            let list = v
-                .as_array()
-                .unwrap_or_else(|| panic!("events.json: table {k} must be an array"));
-            (k.clone(), list.clone())
-        })
-        .collect()
+/// Parse `events.json` into the typed event tables (`{ terrain: [EventDef] }`).
+pub fn load_events() -> EventTables {
+    must_parse(EVENTS_JSON, "events.json")
 }
 
-/// Parse items.json as { id: { ... } }.
-#[allow(dead_code)] // first consumer: M3 (shops).
-pub fn load_items() -> std::collections::HashMap<String, serde_json::Value> {
-    let v: serde_json::Value =
-        serde_json::from_str(ITEMS_JSON).expect("items.json: must be valid JSON at build time");
-    v.as_object()
-        .expect("items.json: top level must be an object")
-        .iter()
-        .map(|(k, v)| (k.clone(), v.clone()))
-        .collect()
+/// Parse `items.json` into the typed item catalog (`{ id: ItemDef }`).
+pub fn load_items() -> ItemIndex {
+    must_parse(ITEMS_JSON, "items.json")
 }
 
-/// Parse npcs.json as { table: [ {...} ] }.
-#[allow(dead_code)] // first consumer: M2 (NPC encounters).
-pub fn load_npcs() -> std::collections::HashMap<String, Vec<serde_json::Value>> {
-    let v: serde_json::Value =
-        serde_json::from_str(NPCS_JSON).expect("npcs.json: must be valid JSON at build time");
-    let obj = v
-        .as_object()
-        .expect("npcs.json: top level must be an object");
-    obj.iter()
-        .map(|(k, v)| {
-            let list = v
-                .as_array()
-                .unwrap_or_else(|| panic!("npcs.json: table {k} must be an array"));
-            (k.clone(), list.clone())
-        })
-        .collect()
+/// Parse `npcs.json` into the typed npc tables (`{ terrain: [NpcDef] }`).
+pub fn load_npcs() -> NpcTables {
+    must_parse(NPCS_JSON, "npcs.json")
 }
 
-/// Parse dialogue.json as { node_or_npc: [lines] }.
-#[allow(dead_code)] // first consumer: M2 (dialogue).
-pub fn load_dialogue() -> std::collections::HashMap<String, Vec<String>> {
-    let v: serde_json::Value = serde_json::from_str(DIALOGUE_JSON)
-        .expect("dialogue.json: must be valid JSON at build time");
-    let out = v
-        .as_object()
-        .expect("dialogue.json: top level must be an object")
-        .iter()
-        .map(|(k, v)| {
-            let lines = v
-                .as_array()
-                .unwrap_or_else(|| panic!("dialogue.json: entry {k} must be an array of strings"));
-            (
-                k.clone(),
-                lines
-                    .iter()
-                    .map(|l| {
-                        l.as_str()
-                            .expect("dialogue.json: lines must be strings")
-                            .to_string()
-                    })
-                    .collect(),
-            )
-        })
-        .collect();
-    out
+/// Parse `dialogue.json` into the typed dialogue book (`{ key: [line] }`).
+pub fn load_dialogue() -> DialogueBook {
+    must_parse(DIALOGUE_JSON, "dialogue.json")
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::collections::BTreeSet;
 
     #[test]
-    fn all_data_files_parse() {
-        // Empty tables are fine for M1 — the files must still be valid JSON
-        // objects so M2/M3 rules have a working loader.
+    fn all_data_files_parse_to_typed_tables() {
         let events = load_events();
-        for t in events.values() {
-            for e in t {
-                e.as_object().expect("events must be objects");
-            }
-        }
-        assert!(!load_items().is_empty());
-        assert!(load_npcs().values().all(|t| !t.is_empty() || t.is_empty()));
-        assert!(!load_dialogue().is_empty());
+        assert!(
+            !events.is_empty(),
+            "events.json must define at least one event"
+        );
+        assert!(events.events("highway").is_some_and(|t| !t.is_empty()));
+
+        let items = load_items();
+        assert!(items.get("fuel").is_some(), "items.json must define 'fuel'");
+        assert!(items.get("food").is_some(), "items.json must define 'food'");
+        // every item keeps an id-stable identity and a known kind
+        assert!(items.get("fuel").unwrap().name.starts_with("Full tank"));
+
+        let npcs = load_npcs();
+        assert!(npcs.npcs("highway").is_some_and(|t| !t.is_empty()));
+
+        let dlg = load_dialogue();
+        assert!(dlg.lines("title").is_some_and(|l| !l.is_empty()));
+        assert!(dlg
+            .lines("gas_station_attendant")
+            .is_some_and(|l| !l.is_empty()));
+    }
+
+    #[test]
+    fn npc_tables_track_event_tables() {
+        // A terrain is a drivable road state only if it has BOTH an event
+        // table and an npc table; the two must stay in lockstep so M2 has a
+        // full, consistent encounter set per terrain.
+        let events = load_events();
+        let npcs = load_npcs();
+        let e: BTreeSet<&str> = events.table_names().collect();
+        let n: BTreeSet<&str> = npcs.table_names().collect();
+        assert_eq!(e, n, "every terrain needs both event and npc tables");
     }
 }

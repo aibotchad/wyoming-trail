@@ -72,8 +72,8 @@ Sample routes to support (examples):
 ## Current Status
 
 - Milestone: 1 of 6 (in progress — logic core done, browser verification pending)
-- State: All Rust code compiles with **zero warnings**; `cargo clippy --all-targets` clean; `cargo fmt --check` clean; **18/18 core unit tests pass**
-- Last session summary: 2026-11-25 — built full core + web layer from scratch, fixed all compile errors against web-sys 0.3.107, cleared all dead-code and clippy warnings, fixed one inverted test assertion, committed and pushed to GitHub (`main`)
+- State: All Rust code compiles with **zero warnings**; `cargo clippy --all-targets` clean; `cargo fmt --check` clean; **22/22 core unit tests pass** (native + wasm32 builds verified)
+- Last session summary: 2026-11-26 — data-oriented refactor: new typed content layer `src/core/defs.rs` (EventDef/EventTables, ItemDef/ItemKind, NpcRole/NpcTables, DialogueBook, ItemIndex) + typed `include_str!` loaders in `data.rs`; DOP rule added to PROMPT.md; committed and pushed to GitHub (`main`)
 
 ## Milestones
 
@@ -94,7 +94,7 @@ Sample routes to support (examples):
 ### Milestone 2: Events and survival
 
 - [x] Central config module for all balance numbers (`src/core/config.rs`)
-- [ ] Event system (data-driven, weighted, condition-aware; seeded RNG; unit tested) — data structs + loaders in `data.rs`, RNG seeded in `rng.rs`, first consumers pending
+- [ ] Event system (data-driven, weighted, condition-aware; seeded RNG; unit tested) — **typed content layer done** (`defs.rs`: EventTables/NpcTables/ItemIndex/DialogueBook; `data.rs`: parsers), RNG seeded in `rng.rs`, first rule consumers pending
 - [ ] 15+ events: wind closure, blizzard, wildlife on road, flat tire, overheating, dead battery, cell dead zone, speeding ticket, construction, etc.
 - [ ] Road closures remove roads from choices until reopened; reroute and backtrack logic
 - [ ] Sickness/injury and recovery; first-aid and medicine items
@@ -182,6 +182,9 @@ Sample routes to support (examples):
 | 2026-11-25 | web-sys 0.3.107 API set: `get_context("2d")` + `dyn_into` (not deprecated `context_2d()`); `set_fill_style`/`set_font` take `&str`; `measure_text` returns `Result<TextMetrics, JsValue>` (needs `TextMetrics` cargo feature) | Compiler-verified against the pinned web-sys version |
 | 2026-11-25 | `PartyMember::apply_health` contract: returns `true` exactly when this call makes them leave the trip (0 health); test corrected accordingly | Matches the documented contract and family-friendly "hospital, leave trip" rule |
 | 2026-11-25 | Data files loaded via `include_str!` at compile time (no runtime fetches) | Satisfies "no external network calls at runtime"; JSON validated by parse tests |
+| 2026-11-26 | Data-oriented programming adopted (PROMPT rule): content is plain typed data in `defs.rs`, parsed into `BTreeMap`-keyed tables by `data.rs`; enums carry `#[serde(other)]` fallback so newer data files don't break older builds; game logic will consume typed tables, never raw JSON | Clean separation of concerns, extensible without schema migration, deterministic iteration order; no over-engineering (no ORM-like indirection, no trait objects) |
+| 2026-11-26 | `ItemKind` uses derived `Default` with `#[default]` on the `Other` variant (serde `other` catches unknown kinds at parse time) | `#[serde(other, default)]` on a variant is not valid attribute syntax (compile error); derived Default + `#[serde(other)]` is the correct combination |
+| 2026-11-26 | New foundation modules (`defs.rs`, `data.rs`) get module-scoped `#![allow(dead_code)]` with rationale, not a global allow | M2 (event selection) and M3 (shop/hunter) are the first consumers; keeps clippy globally clean while the layer is in place |
 
 ## Backlog (ideas, not committed)
 
@@ -198,3 +201,4 @@ Sample routes to support (examples):
 | # | Summary | Files changed |
 |---|---------|---------------|
 | 1 | Built the full skeleton: Cargo/Trunk setup, core modules (config, state, party, truck, resources, map_graph, data, rng, game), 5 data JSON files, thin web layer (canvas render + input + localStorage save/load), wasm entry. Fixed every compile error against web-sys 0.3.107. Cleared all dead-code + clippy warnings (annotations with milestone "first consumer" notes). Fixed inverted party-health test. Green: 0 check warnings, clippy clean, fmt clean, 18/18 tests. Committed and pushed to GitHub `main`. | `Cargo.toml`, `Cargo.lock`, `Cargo.config` (`.cargo/config.toml`), `Trunk.toml`, `index.html`, `assets/data/*.json`, `src/core/*.rs`, `src/web/mod.rs`, `src/lib.rs`, `src/main.js`, `.gitignore`, `PROGRESS.md` |
+| 2 | 2026-11-26 — DOP data layer: new `src/core/defs.rs` (typed content model for events/items/npcs/dialogue; enums with `#[serde(other)]` fallbacks; `BTreeMap`-keyed tables for deterministic iteration), typed `include_str!` loaders in `data.rs` (load_events/load_items/load_npcs/load_dialogue → typed tables), DOP rule added to PROMPT.md, `pub mod defs` wired in `core/mod.rs`. Fixed: mangled JSON literal in `event_def_round_trips`, missing `Default` for `ItemKind` (now derived), `derivable_impls` clippy warning, invalid `#[serde(other, default)]` attribute. Green: fmt clean, 22/22 tests, clippy zero warnings, native + wasm32 builds clean. Committed and pushed to GitHub `main`. | `src/core/defs.rs` (new), `src/core/data.rs`, `src/core/mod.rs`, `PROMPT.md`, `PROGRESS.md` |

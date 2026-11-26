@@ -26,6 +26,7 @@ The player leads a small road-trip party (the driver plus three friends or famil
 
 ## Architecture Rules
 
+- Data-oriented programming (DOP) is the guiding style: model game content as simple, serializable data (plain structs and tables) that deterministic, pure rule/transition functions operate on — rather than encoding behavior in scattered code and deep object hierarchies. Prioritize clean architecture, clear separation of concerns (data / rules / state / presentation), and extensibility (adding a town, road, event, or NPC should be data-only); avoid over-engineering.
 - Separate pure game logic from the web layer.
   - `src/core/` holds all game rules: party, truck, resources, travel, map graph, events, shop, hunting, NPCs and dialogue, scoring, RNG, config. No web-sys/js-sys here. Fully unit-testable with `cargo test`.
   - `src/web/` holds rendering, input, timers, audio, and localStorage. Keep it thin.
