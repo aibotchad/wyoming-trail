@@ -1,0 +1,19 @@
+{
+  "title": [
+    "Wyoming Trail",
+    "A road-trip RPG across modern Wyoming.",
+    "Cheyenne to Yellowstone — fuel, food, four friends, and one pickup."
+  ],
+  "gas_station_attendant": [
+    "Fill 'er up, travelers. $3.85 a gallon, same as the sign says.",
+    "Take your time — the road out here is longer in the mirror than it looks."
+  ],
+  "ranger_high_country": [
+    "Watch for high-wind gusts on the pass. Ease off when the mirror shakes.",
+    "You're doing fine. The mountain will clear before the afternoon."
+  ],
+  "ranger_park_gate": [
+    "Welcome to Yellowstone. You made it all the way — that's the whole game.",
+    "Remember: bison are always right, on the road and off it."
+  ]
+}

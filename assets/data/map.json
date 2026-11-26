@@ -1,0 +1,80 @@
+{
+  "nodes": [
+    {
+      "id": "cheyenne",
+      "name": "Cheyenne",
+      "kind": "Start",
+      "services": { "fuel": true, "food": true, "motel": true, "mechanic": true, "outfitter": true },
+      "history": "Wyoming's capital, where every trip begins. The railroad and the highway both bow through here — pick up gear, fill the tank, and head west.",
+      "hunting_allowed": false
+    },
+    {
+      "id": "laramie",
+      "name": "Laramie",
+      "kind": "Town",
+      "services": { "fuel": true, "food": true, "motel": true, "mechanic": true, "outfitter": false },
+      "history": "Home of Colorado State University, built on coal and wool. The town has weathered blizzards and busts; the dining car here is a classic stop.",
+      "hunting_allowed": false
+    },
+    {
+      "id": "casper",
+      "name": "Casper",
+      "kind": "Town",
+      "services": { "fuel": true, "food": true, "motel": true, "mechanic": false, "outfitter": false },
+      "history": "An oil town on the sagebrush plains. Long, straight roads — locals say if you can't drive straight, don't drive at all.",
+      "hunting_allowed": false
+    },
+    {
+      "id": "rawlins",
+      "name": "Rawlins",
+      "kind": "Junction",
+      "services": { "fuel": true, "food": true, "motel": false, "mechanic": false, "outfitter": false },
+      "history": "A rail town at the foot of the Laramie Range, where the I-80 corridor meets the Wind River valley. The name comes from an English settler; town life is railroad life, on pause.",
+      "hunting_allowed": true
+    },
+    {
+      "id": "pinedale",
+      "name": "Pinedale",
+      "kind": "Town",
+      "services": { "fuel": true, "food": true, "motel": true, "mechanic": true, "outfitter": false },
+      "history": "Pine-dotted plateau town under the Wind River Range — elk, bighorn, and the biggest ski hill in Wyoming (in winter). A good last stop before the mountains.",
+      "hunting_allowed": true
+    },
+    {
+      "id": "jackson",
+      "name": "Jackson Hole",
+      "kind": "Landmark",
+      "services": { "fuel": true, "food": true, "motel": true, "mechanic": true, "outfitter": true },
+      "history": "The gateway valley: cattle and rail history, the Gros Ventre and Snake rivers, and a square that smells like elk in fall. From here it's all geysers.",
+      "hunting_allowed": true
+    },
+    {
+      "id": "yellowstone_south",
+      "name": "Yellowstone South Entrance",
+      "kind": "ParkEntrance",
+      "services": { "fuel": false, "food": false, "motel": true, "mechanic": false, "outfitter": false },
+      "history": "The road narrows into the park; geyser basins, bison herds, and a sign that ends the trip and begins the memory. Welcome to Yellowstone.",
+      "hunting_allowed": false
+    }
+  ],
+  "roads": [
+    { "from": "cheyenne", "to": "laramie", "highway": "I-25 / WY-287", "distance_miles": 85.0, "terrain": "HighPlains", "services_gap": false, "seasonal_risk": 1, "scenery": 2, "events_table": "highway", "npc_table": "highway", "closed": false },
+    { "from": "cheyenne", "to": "casper", "highway": "WY-16", "distance_miles": 150.0, "terrain": "SagebrushBasin", "services_gap": true, "seasonal_risk": 2, "scenery": 2, "events_table": "basin", "npc_table": "basin", "closed": false },
+    { "from": "casper", "to": "rawlins", "highway": "US-16", "distance_miles": 150.0, "terrain": "SagebrushBasin", "services_gap": true, "seasonal_risk": 2, "scenery": 2, "events_table": "basin", "npc_table": "basin", "closed": false },
+    { "from": "laramie", "to": "rawlins", "highway": "I-80 / WY-287", "distance_miles": 65.0, "terrain": "Badlands", "services_gap": false, "seasonal_risk": 2, "scenery": 3, "events_table": "highway", "npc_table": "highway", "closed": false },
+    { "from": "rawlins", "to": "pinedale", "highway": "WY-391", "distance_miles": 70.0, "terrain": "MountainPass", "services_gap": true, "seasonal_risk": 4, "scenery": 5, "events_table": "mountain", "npc_table": "mountain", "closed": false },
+    { "from": "pinedale", "to": "jackson", "highway": "US-191", "distance_miles": 65.0, "terrain": "RiverValley", "services_gap": false, "seasonal_risk": 2, "scenery": 4, "events_table": "valley", "npc_table": "valley", "closed": false },
+    { "from": "jackson", "to": "yellowstone_south", "highway": "WY-22", "distance_miles": 70.0, "terrain": "GeyserBasin", "services_gap": false, "seasonal_risk": 3, "scenery": 5, "events_table": "park", "npc_table": "park", "closed": false }
+  ],
+  "node_index": {
+    "cheyenne": 0,
+    "laramie": 1,
+    "casper": 2,
+    "rawlins": 3,
+    "pinedale": 4,
+    "jackson": 5,
+    "yellowstone_south": 6
+  },
+  "start": "cheyenne",
+  "goals": ["yellowstone_south"]
+}

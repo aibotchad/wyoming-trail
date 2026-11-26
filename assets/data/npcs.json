@@ -1,0 +1,13 @@
+{
+  "highway": [
+    { "name": "Gas station attendant", "role": "service", "desc": "Can top off the tank for the standard price." }
+  ],
+  "basin": [],
+  "mountain": [
+    { "name": "Ranger", "role": "helper", "desc": "Knows the high country; happy to point the way." }
+  ],
+  "valley": [],
+  "park": [
+    { "name": "Park ranger at the gate", "role": "helper", "desc": "Welcomes the party to Yellowstone and wishes it a safe trip." }
+  ]
+}

@@ -8,28 +8,27 @@ A short, replayable Oregon Trail-style road trip across modern Wyoming. Players 
 
 - Language: Rust (stable), compiled to WebAssembly (wasm32-unknown-unknown)
 - Build/serve: Trunk (`trunk serve`, `trunk build --release`)
-- Key crates: wasm-bindgen, web-sys, js-sys, serde, serde_json, rand (seedable, getrandom "js" feature)
+- Key crates: wasm-bindgen, web-sys 0.3.107, js-sys, serde, serde_json (via `include_str!`), rand (seedable, getrandom "js" feature)
 - Rendering: Canvas 2D via web-sys; keyboard + mouse/touch input
+- No external network calls at runtime; localStorage save with graceful failure
 - How to run: `trunk serve`, then open the printed localhost URL
-- How to test: `cargo test` (core logic), `cargo clippy`, `cargo fmt --check`
-- Folder layout (update as it changes):
+- How to test: `cargo test` (core logic), `cargo clippy --all-targets`, `cargo fmt --check`
+- Folder layout (actual):
 
 ```text
-Cargo.toml
-Trunk.toml
-index.html
+Cargotoml, Cargo.lock, Trunk.toml, index.html, .cargo/config.toml
 assets/data/   map.json, events.json, items.json, npcs.json, dialogue.json
 src/lib.rs     (wasm entry point)
-src/core/      state, party, truck, travel, map, events, shop, hunting,
-               npc, dialogue, rng, config, scoring                (NO web deps)
-src/web/       render, input, audio, storage                      (thin)
-tests/         integration tests for core
+src/core/      mod, config, state, party, truck, resources, travel logic in game,
+               map_graph, data, rng, game     (NO web-sys/js-sys deps)
+src/web/       mod.rs — canvas render, input, storage (thin)
+src/main.js    (small glue)
 ```
 
 ## Core Design
 
 - Player goal: Reach Yellowstone (any entrance) with at least one party member still on the trip.
-- Core mechanics: Graph-based map with road choice at junctions; daily driving loop with pace (hours driven) and meals; fuel/money/food/ammo management; random events; road closures and rerouting; licensed hunting minigame; NPC encounters and dialogue.
+- Core mechanics: Graph-based map with road choice at junctions; daily driving loop with pace (hours driven) and meals; fuel/money/food/ammo management; random events; road closures and rerouting; hunting minigame; NPC encounters and dialogue.
 - Controls: Mouse/touch buttons and number/arrow/Enter keys for menus.
 - Win: Arrive at Yellowstone (South via Grand Teton, East via Cody) with 1+ party members. Score from party health and morale, money, truck condition, landmarks visited, NPCs helped, and days taken.
 - Lose: Truck stranded with no fuel/money and no way to get help, or every party member has left the trip.
@@ -40,7 +39,7 @@ tests/         integration tests for core
 
 Requirement: at least 3 meaningfully different routes from Cheyenne to a Yellowstone entrance, with backtracking allowed.
 
-Starting sketch of roads (verify every road name and mileage; mark `// TODO verify`):
+Starting sketch of roads (verify every road name and mileage in M6):
 
 | Road | Connects | Notes |
 |------|----------|-------|
@@ -72,40 +71,40 @@ Sample routes to support (examples):
 
 ## Current Status
 
-- Milestone: 1 of 6
-- State: Not started
-- Last session summary: -
+- Milestone: 1 of 6 (in progress — logic core done, browser verification pending)
+- State: All Rust code compiles with **zero warnings**; `cargo clippy --all-targets` clean; `cargo fmt --check` clean; **18/18 core unit tests pass**
+- Last session summary: 2026-11-25 — built full core + web layer from scratch, fixed all compile errors against web-sys 0.3.107, cleared all dead-code and clippy warnings, fixed one inverted test assertion, committed and pushed to GitHub (`main`)
 
 ## Milestones
 
 ### Milestone 1: Playable core with a branching map (current)
 
-- [ ] Cargo project, Trunk config, core/web module split
-- [ ] Canvas renders a title screen in the browser; one passing unit test
-- [ ] Screen state machine (enum) and game loop
-- [ ] Party creation (4 names) and party/truck/resource data model in core
-- [ ] Map graph data model and loader (map.json) with a small test map (at least 2 routes)
-- [ ] Road Choice screen at junctions (road name, distance, terrain, services ahead)
-- [ ] Travel screen: day counter, miles progress, pace and meal selectors
-- [ ] Daily update: fuel burned, food eaten, fatigue and health change (unit tested)
-- [ ] Arrive at node and show landmark/town screen (placeholder text)
-- [ ] Win at Yellowstone and game over conditions
-- [ ] Restart without reloading
+- [x] Cargo project, Trunk config, core/web module split
+- [ ] Canvas renders a title screen in the browser; one passing unit test (unit tests pass — 18 of them; **browser rendering not yet verified in-browser via `trunk serve`**)
+- [x] Screen state machine (enum) and game loop
+- [x] Party creation (4 names) and party/truck/resource data model in core
+- [x] Map graph data model and loader (map.json) with a test map (3+ routes, tested)
+- [x] Road Choice at junctions (road name, distance, terrain, services) — logic + screen data in core
+- [x] Travel/day-loop screen: day counter, miles progress, pace and meal selectors — data model + logic in core
+- [x] Daily update: fuel burned, food eaten, fatigue and health change (unit tested)
+- [x] Arrive at node and show landmark/town screen (placeholder text)
+- [x] Win at Yellowstone and game over conditions
+- [x] Restart without reloading — `Game::restart(seed)` implemented (UI wiring lands with M2 menus)
 
 ### Milestone 2: Events and survival
 
-- [ ] Central config module for all balance numbers
-- [ ] Event system (data-driven, weighted, condition-aware; seeded RNG; unit tested)
+- [x] Central config module for all balance numbers (`src/core/config.rs`)
+- [ ] Event system (data-driven, weighted, condition-aware; seeded RNG; unit tested) — data structs + loaders in `data.rs`, RNG seeded in `rng.rs`, first consumers pending
 - [ ] 15+ events: wind closure, blizzard, wildlife on road, flat tire, overheating, dead battery, cell dead zone, speeding ticket, construction, etc.
 - [ ] Road closures remove roads from choices until reopened; reroute and backtrack logic
 - [ ] Sickness/injury and recovery; first-aid and medicine items
-- [ ] Truck condition (tires, battery, engine) affects travel and breakdown odds
+- [ ] Truck condition (tires, battery, engine) affects travel and breakdown odds — fields in `truck.rs`
 - [ ] Weather, season, and terrain per road
 
 ### Milestone 3: Stops, fuel, and hunting
 
 - [ ] Cheyenne outfitting screen (starting money, truck choice, supplies)
-- [ ] Gas station: buy fuel, prices vary by location; services-gap warnings
+- [ ] Gas station: buy fuel, prices vary by location; services-gap warnings — `FUEL_PRICE_PER_GAL` configured
 - [ ] Diner, motel/campground, mechanic, outfitter at appropriate stops
 - [ ] Hunting license and ammo purchase at outfitters
 - [ ] Hunting minigame (non-graphic timing/aim), legal game by season and location
@@ -115,7 +114,7 @@ Sample routes to support (examples):
 
 ### Milestone 4: NPCs and expanded world
 
-- [ ] NPC and dialogue data model (nodes, choices, conditions, effects, flags) with unit tests
+- [ ] NPC and dialogue data model (nodes, choices, conditions, effects, flags) with unit tests — `npcs.json`/`dialogue.json` loaded
 - [ ] Dialogue screen
 - [ ] Town NPCs (diner, motel, mechanic, outfitter, historian) with road reports
 - [ ] Roadside encounter system (road, terrain, season, weather conditions; seeded RNG)
@@ -131,7 +130,7 @@ Sample routes to support (examples):
 - [ ] HUD: date, weather, fuel, money, food, health/morale, next-stop distance
 - [ ] Sound effects and optional music (generated or free, no runtime network calls)
 - [ ] Pause menu, help screen, mobile/touch layout and canvas scaling
-- [ ] Save/load via localStorage with graceful fallback
+- [ ] Save/load via localStorage with graceful fallback — `save`/`load_save` implemented in web layer
 
 ### Milestone 6: Polish and release
 
@@ -143,19 +142,23 @@ Sample routes to support (examples):
 
 ## Next Steps
 
-1. Create the Cargo project, Trunk config, and module split.
-2. Get a title screen rendering on the canvas with one passing unit test.
-3. Build the core party/truck/resource model and a small branching test map.
+1. Run `trunk serve`, verify the title screen and each M1 screen render in the browser (desktop + mobile layout), fix any rendering issues found.
+2. Wire `Game::restart` into the title screen (Play Again) — closes the last M1 box.
+3. Begin Milestone 2: event system on top of the existing `events.json` loader + seeded RNG (15+ events first).
+4. M2–M6 placeholder APIs are already declared (dead-code annotated with "first consumer: M#") — implement against them.
 
 ## Known Issues
 
 | # | Description | Severity | Status |
 |---|-------------|----------|--------|
-| - | None yet | - | - |
+| 1 | Title/HUD rendering not yet verified in a real browser (code compiles; no `trunk serve` session run) | Unknown | Open |
+| 2 | Inverted assertion in `party::tests::health_zero_means_left_trip_not_death` (`apply_health` returning `true` when a member leaves was negated) | Low | **Fixed 2026-11-25** (caught by `cargo test`) |
 
 ### Unverified (tooling or facts)
 
-- [ ] Nothing logged yet. Record anything that could not be tested or fact-checked here.
+- [ ] In-browser rendering of all M1 screens (needs `trunk serve` + a browser session)
+- [ ] All map road names/mileages are still the starting sketch — fact-check in M6
+- [ ] web-sys 0.3.107 API signatures were verified against compiler feedback, not docs
 
 ## Decisions
 
@@ -175,6 +178,10 @@ Sample routes to support (examples):
 | 0 | Road closures replace river crossings | Fits a modern road trip |
 | 0 | Party members leave the trip at 0 health instead of dying | Family-friendly tone |
 | 0 | Placeholder art drawn in code first | Keep focus on gameplay |
+| 2026-11-25 | 20 dead-code warnings suppressed with `#[allow(dead_code)]` + "first consumer: M#" comments on the M2–M6 placeholder APIs (constants, methods, struct) rather than deleting them | Keeps the intended API surface in place; annotations document which milestone consumes each item |
+| 2026-11-25 | web-sys 0.3.107 API set: `get_context("2d")` + `dyn_into` (not deprecated `context_2d()`); `set_fill_style`/`set_font` take `&str`; `measure_text` returns `Result<TextMetrics, JsValue>` (needs `TextMetrics` cargo feature) | Compiler-verified against the pinned web-sys version |
+| 2026-11-25 | `PartyMember::apply_health` contract: returns `true` exactly when this call makes them leave the trip (0 health); test corrected accordingly | Matches the documented contract and family-friendly "hospital, leave trip" rule |
+| 2026-11-25 | Data files loaded via `include_str!` at compile time (no runtime fetches) | Satisfies "no external network calls at runtime"; JSON validated by parse tests |
 
 ## Backlog (ideas, not committed)
 
@@ -190,4 +197,4 @@ Sample routes to support (examples):
 
 | # | Summary | Files changed |
 |---|---------|---------------|
-| 1 | - | - |
+| 1 | Built the full skeleton: Cargo/Trunk setup, core modules (config, state, party, truck, resources, map_graph, data, rng, game), 5 data JSON files, thin web layer (canvas render + input + localStorage save/load), wasm entry. Fixed every compile error against web-sys 0.3.107. Cleared all dead-code + clippy warnings (annotations with milestone "first consumer" notes). Fixed inverted party-health test. Green: 0 check warnings, clippy clean, fmt clean, 18/18 tests. Committed and pushed to GitHub `main`. | `Cargo.toml`, `Cargo.lock`, `Cargo.config` (`.cargo/config.toml`), `Trunk.toml`, `index.html`, `assets/data/*.json`, `src/core/*.rs`, `src/web/mod.rs`, `src/lib.rs`, `src/main.js`, `.gitignore`, `PROGRESS.md` |

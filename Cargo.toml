@@ -1,0 +1,39 @@
+[package]
+name = "wyoming-trail"
+version = "0.1.0"
+edition = "2021"
+description = "Wyoming Trail — an Oregon Trail–style road-trip RPG across modern Wyoming. Rust to WebAssembly."
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+console_error_panic_hook = "0.1"
+js-sys = "0.3"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rand = { version = "0.8", features = ["std"] }
+# web-sys is declared un-gated so native `cargo check`/`clippy` covers the
+# web module too; it behaves the same either way at wasm build time.
+web-sys = { version = "0.3", features = [
+    "Event",
+    "Window",
+    "Document",
+    "Element",
+    "HtmlElement",
+    "HtmlCanvasElement",
+    "CanvasRenderingContext2d",
+    "TextMetrics",
+    "KeyboardEvent",
+    "MouseEvent",
+    "Storage",
+] }
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+getrandom = { version = "0.2", features = ["js"] }
+
+[profile.release]
+opt-level = "s"
+lto = true

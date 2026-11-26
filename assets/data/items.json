@@ -1,0 +1,10 @@
+{
+  "fuel": { "name": "Full tank of diesel/gasoline", "price": 34.65, "kind": "consumable", "desc": "Fills the tank (9 gallons at $3.85)." },
+  "food": { "name": "Groceries (10 meals)", "price": 45.0, "kind": "consumable", "desc": "Canned goods, bread, and snacks for the cooler." },
+  "water": { "name": "Water case (12 bottles)", "price": 12.0, "kind": "consumable", "desc": "Bottled water for the party." },
+  "first_aid": { "name": "First-aid doses", "price": 40.0, "count": 1, "kind": "medicine", "desc": "Bandages, antiseptic, stomach medicine." },
+  "roadside_kit": { "name": "Roadside emergency kit", "price": 60.0, "kind": "equipment", "desc": "Jump cables, blanket, flashlight, and a coffee can of morale." },
+  "ammo": { "name": "Ammunition (20 rounds)", "price": 30.0, "count": 20, "kind": "hunting", "desc": "For the non-graphic hunt mini-game." },
+  "license": { "name": "Hunting license", "price": 25.0, "kind": "hunting", "desc": "Required to join a hunt." },
+  "ice": { "name": "Cooler ice", "price": 8.0, "kind": "consumable", "desc": "Keeps the food cold." }
+}

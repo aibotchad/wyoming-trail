@@ -1,0 +1,47 @@
+{
+  "highway": [
+    {
+      "name": "Wind on the high plains",
+      "text": "Crosswinds push the pickup around. The driver eases off and holds the wheel steady; nobody gets hurt, everyone's ears ring.",
+      "weight": 1
+    },
+    {
+      "name": "Stray goat on the roadway",
+      "text": "A goat strides across the lane with complete confidence. The driver threads the needle; the goat is unimpressed.",
+      "weight": 1
+    }
+  ],
+  "basin": [
+    {
+      "name": "Sagebrush haze",
+      "text": "Dust and sage smell fill the cab after a dry stretch. A stop and a shake-out clears the air for all of you.",
+      "weight": 1
+    }
+  ],
+  "mountain": [
+    {
+      "name": "High-country switchbacks",
+      "text": "Hairpin after hairpin under open sky. The view is spectacular; the ride is not for those who love a soft stomach.",
+      "weight": 1
+    },
+    {
+      "name": "Elk crossing",
+      "text": "A small herd stands mid-road. The engine ticks down to idle; the elk debate for a while, then move on.",
+      "weight": 1
+    }
+  ],
+  "valley": [
+    {
+      "name": "River crossing",
+      "text": "A bridge over spring water — the driver slows for the washboard on the approach and comes out the far side without spilling a drink.",
+      "weight": 1
+    }
+  ],
+  "park": [
+    {
+      "name": "Bison traffic",
+      "text": "Bison stroll onto the park road. You stop, watch, and let them go. It's exactly why the trip was worth making.",
+      "weight": 1
+    }
+  ]
+}

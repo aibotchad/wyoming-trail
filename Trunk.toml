@@ -1,0 +1,3 @@
+dist = "dist"
+index = "index.html"
+target = "wasm32-unknown-unknown"
