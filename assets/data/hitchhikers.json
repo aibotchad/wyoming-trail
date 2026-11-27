@@ -1,0 +1,9 @@
+[
+  { "name": "The upholstery incident", "weight": 4, "text": "Your new hobo friend, Boxcar Lou, announces 'I don't feel so hot' and pukes all over the inside of your vehicle. All of it. Even the vents.", "effect": { "money": -40, "mood": -20 } },
+  { "name": "Beans for everyone", "weight": 3, "text": "Boxcar Lou unpacks a bindle holding eleven cans of beans and insists on sharing. Spirits and food rise. So, later, does the smell.", "effect": { "food": 14, "mood": 6 } },
+  { "name": "Roadside wizard", "weight": 2, "text": "Your passenger listens to the engine, hits it once with a spoon and leaves it running better than ever. They also siphon nothing, which they want noted.", "effect": { "fuel": 5, "mood": 8 } },
+  { "name": "Gratitude, folded small", "weight": 2, "text": "At the next pullout your passenger hands you a wad of damp twenties and says 'lottery.' You decide not to ask.", "effect": { "money": 120, "mood": 5 } },
+  { "name": "Gone with the jerky", "weight": 2, "text": "You stop for a bathroom break. Your passenger departs across the sagebrush with the grub box and $30, waving politely.", "effect": { "food": -16, "money": -30, "mood": -8 } },
+  { "name": "Harmonica hours", "weight": 2, "text": "Three hours of harmonica. One song. It was not a good song the first time.", "effect": { "mood": -10 } },
+  { "name": "Shortcut sage", "weight": 1, "text": "Your passenger knows a back road. It is real, it is short, and you are as surprised as anyone.", "effect": { "miles": -25, "mood": 6 } }
+]

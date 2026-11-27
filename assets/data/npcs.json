@@ -1,4 +1,5 @@
 {
+  "any": [],
   "highway": [
     { "name": "Gas station attendant", "role": "service", "desc": "Can top off the tank for the standard price." }
   ],

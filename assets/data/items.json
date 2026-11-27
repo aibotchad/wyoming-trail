@@ -1,10 +1,20 @@
 {
-  "fuel": { "name": "Full tank of diesel/gasoline", "price": 34.65, "kind": "consumable", "desc": "Fills the tank (9 gallons at $3.85)." },
-  "food": { "name": "Groceries (10 meals)", "price": 45.0, "kind": "consumable", "desc": "Canned goods, bread, and snacks for the cooler." },
-  "water": { "name": "Water case (12 bottles)", "price": 12.0, "kind": "consumable", "desc": "Bottled water for the party." },
-  "first_aid": { "name": "First-aid doses", "price": 40.0, "count": 1, "kind": "medicine", "desc": "Bandages, antiseptic, stomach medicine." },
-  "roadside_kit": { "name": "Roadside emergency kit", "price": 60.0, "kind": "equipment", "desc": "Jump cables, blanket, flashlight, and a coffee can of morale." },
-  "ammo": { "name": "Ammunition (20 rounds)", "price": 30.0, "count": 20, "kind": "hunting", "desc": "For the non-graphic hunt mini-game." },
-  "license": { "name": "Hunting license", "price": 25.0, "kind": "hunting", "desc": "Required to join a hunt." },
-  "ice": { "name": "Cooler ice", "price": 8.0, "kind": "consumable", "desc": "Keeps the food cold." }
+  "groceries": { "name": "Grub box (10 servings)", "price": 25.0, "kind": "food", "count": 10, "sold_at": ["food"], "helps": "Feeds the crew.", "desc": "Beans, bread and something labelled 'meat'." },
+  "gas_can": { "ride": "motor", "name": "Full gas can (5 gal)", "price": 35.0, "kind": "fuel_can", "gallons": 5, "sold_at": ["fuel", "outfitter"], "helps": "Extra range.", "desc": "Poured in automatically before you run dry." },
+  "spare_tire": { "ride": "motor", "name": "Spare tire", "price": 120.0, "kind": "equipment", "sold_at": ["mechanic", "outfitter"], "helps": "Saves a day on a flat.", "desc": "Only slightly balder than the ones you have." },
+  "duct_tape": { "ride": "motor", "name": "Duct tape", "price": 8.0, "kind": "consumable", "repair": true, "sold_at": ["fuel", "food", "mechanic"], "helps": "Fixes overheating.", "desc": "Wyoming's leading automotive repair." },
+  "jumper_cables": { "ride": "motor", "name": "Jumper cables", "price": 30.0, "kind": "equipment", "reusable": true, "repair": true, "sold_at": ["fuel", "mechanic"], "helps": "Fixes a dead battery.", "desc": "Red to red. Cousin Dwayne is not allowed to touch them." },
+  "first_aid": { "name": "First-aid kit", "price": 30.0, "kind": "medicine", "sold_at": ["food", "outfitter"], "helps": "Treats a twisted ankle.", "desc": "Bandages, tweezers, and the good antacids." },
+  "ammo": { "name": "Box of ammo (10 rounds)", "price": 20.0, "kind": "ammo", "count": 10, "gather": "poach", "sold_at": ["fuel", "outfitter"], "helps": "Ten shots.", "desc": "For poaching. Not that you said that out loud." },
+  "road_atlas": { "ride": "motor", "name": "Paper road atlas", "price": 15.0, "kind": "equipment", "reusable": true, "sold_at": ["fuel", "outfitter"], "helps": "Prevents GPS wrong turns.", "desc": "Overrules the GPS. Never folds back up." },
+  "toilet_paper": { "name": "Toilet paper", "price": 6.0, "kind": "consumable", "sold_at": ["fuel", "food"], "helps": "Survive bad burritos.", "desc": "You laugh now." },
+  "bear_spray": { "name": "Bear spray", "price": 45.0, "kind": "equipment", "sold_at": ["outfitter"], "helps": "Stops bear and elk trouble.", "desc": "Not a body spray. Ask Dwayne how he knows." },
+  "banjo": { "name": "Pawn shop banjo", "price": 40.0, "kind": "equipment", "reusable": true, "sold_at": ["outfitter"], "helps": "Cures long, silent drives.", "desc": "Has three strings and a history." },
+  "hay_sack": {"ride": "horse", "name": "Sack of hay (8 lb)", "price": 18.0, "kind": "fuel_can", "gallons": 8, "sold_at": ["fuel", "food", "outfitter"], "helps": "Extra range for Dolly.", "desc": "Fed to her before she runs out."},
+  "horseshoes": {"ride": "horse", "name": "Spare horseshoes", "price": 40.0, "kind": "equipment", "sold_at": ["fuel", "food", "mechanic", "outfitter"], "helps": "Saves a day on a thrown shoe.", "desc": "Lucky, if you nail them on the right way up."},
+  "pendleton": {"name": "Vintage wool blanket", "price": 450.0, "kind": "collectible", "reusable": true, "sold_at": [], "at": ["dubois", "lander"], "for_job": "Trustifarian", "score": 300, "sprite": "vint_blanket", "helps": "For the condo: adds 300 to your score.", "desc": "Smells like 1962 and one specific horse."},
+  "rotary": {"name": "Rotary telephone", "price": 160.0, "kind": "collectible", "reusable": true, "sold_at": [], "at": ["lander", "riverton", "kemmerer"], "for_job": "Trustifarian", "score": 90, "sprite": "vint_phone", "helps": "For the condo: adds 90 to your score.", "desc": "Does not work. Priced as if it does."},
+  "chandelier": {"name": "Antler chandelier", "price": 900.0, "kind": "collectible", "reusable": true, "sold_at": [], "at": ["cody", "pinedale", "sheridan"], "for_job": "Trustifarian", "score": 650, "sprite": "vint_antlers", "helps": "For the condo: adds 650 to your score.", "desc": "Many elk shed to make this possible."},
+  "saddle": {"name": "Hand-tooled saddle for the wall", "price": 1200.0, "kind": "collectible", "reusable": true, "sold_at": [], "at": ["sheridan", "buffalo"], "for_job": "Trustifarian", "score": 800, "sprite": "vint_saddle", "helps": "For the condo: adds 800 to your score.", "desc": "Will never meet a horse again."},
+  "jukebox": {"name": "1950s jukebox", "price": 1800.0, "kind": "collectible", "reusable": true, "sold_at": [], "at": ["thermopolis", "casper", "worland"], "for_job": "Trustifarian", "score": 1300, "sprite": "vint_jukebox", "helps": "For the condo: adds 1300 to your score.", "desc": "Plays one song. It is perfect."}
 }

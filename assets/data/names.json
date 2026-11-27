@@ -1,0 +1,11 @@
+{
+  "source": "Picked for laughs: very-Wyoming baby names, and trail names for the foraging crowd",
+  "wyoming": {
+    "men": ["Chase", "Walker", "Hunter", "Remington", "Jackson", "Colt", "Wyatt", "Ryder", "Gunner", "Maverick", "Stetson", "Boone"],
+    "women": ["Harper", "Emma", "Aurora", "Hazel", "Lainey", "Oakley", "Paisley", "Brinley", "Charlotte", "Evelyn"]
+  },
+  "hippie": {
+    "men": ["Desert Rain", "River", "Bodhi", "Cosmo", "Cedar Smoke", "Kombucha", "Sunchild", "Banyan", "Otter", "Ziggy", "Tempeh", "Pinecone"],
+    "women": ["Sage", "Moonbeam", "Rainbow", "Willow", "Patchouli", "Dewdrop", "Clover", "Starling Sky", "Honey Bee", "Quinoa", "Meadowlark", "Aura"]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "traffic": ["truck", "", "police", "", "hotdog", "bus_school", "", "tractor", "towtruck", "", "suv_travel", "vendor", "", "firetruck"],
+  "brush": "sage",
+  "exhaust": "dust",
+  "hitchhiker": "hiker",
+  "terrains": [
+    {"terrain": "HighPlains", "sky": "#8fc9ee", "ground": "#c3aa63", "field_ground": "#c3aa63", "layers": [{"image": "clouds", "parallax": 0.02, "height": 0.7, "drift": 4, "from_top": true}, {"image": "day_far", "parallax": 0.06, "height": 0.85}, {"image": "hills_tan", "parallax": 0.18, "height": 0.7}], "roadside": ["sage", "", "antelope_idle", "sage", "sign", "hiker", "jackalope", ""]},
+    {"terrain": "SagebrushBasin", "sky": "#a8d6ea", "ground": "#bd9f72", "field_ground": "#bd9f72", "layers": [{"image": "clouds", "parallax": 0.02, "height": 0.7, "drift": 4, "from_top": true}, {"image": "day_far", "parallax": 0.06, "height": 0.85}, {"image": "hills_tan", "parallax": 0.22, "height": 0.8}], "roadside": ["sage", "sage", "", "antelope_idle", "sage", "jackalope", "sign_blue", "hiker"]},
+    {"terrain": "RiverValley", "sky": "#96d0f4", "ground": "#7fa352", "field_ground": "#86a95a", "layers": [{"image": "clouds", "parallax": 0.02, "height": 0.7, "drift": 4, "from_top": true}, {"image": "day_far", "parallax": 0.06, "height": 0.85}, {"image": "hills_green", "parallax": 0.18, "height": 0.85}, {"image": "trees_green", "parallax": 0.42, "height": 0.75}], "roadside": ["pine", "sheep", "", "pine", "sheep", "sage", "sign_blue", ""]},
+    {"terrain": "Badlands", "sky": "#f0c996", "ground": "#a96f49", "field_ground": "#b57c55", "layers": [{"image": "clouds", "parallax": 0.02, "height": 0.7, "drift": 4, "from_top": true}, {"image": "day_far", "parallax": 0.06, "height": 0.85}, {"image": "hills_red", "parallax": 0.22, "height": 0.9}], "roadside": ["sage", "", "hiker", "sign", "sage", "", "jackalope", ""]},
+    {"terrain": "MountainPass", "sky": "#9cc8ec", "ground": "#6f8654", "field_ground": "#7d9a62", "layers": [{"image": "clouds", "parallax": 0.02, "height": 0.7, "drift": 4, "from_top": true}, {"image": "day_far", "parallax": 0.05, "height": 1.0}, {"image": "peaks_day", "parallax": 0.16, "height": 1.0}, {"image": "trees_green", "parallax": 0.42, "height": 0.95}], "roadside": ["pine", "elk_idle", "pine", "sheep", "pine", "sign", "pine", "elk_walk"]},
+    {"terrain": "GeyserBasin", "sky": "#bfe0ee", "ground": "#97a46a", "field_ground": "#9fab74", "layers": [{"image": "clouds", "parallax": 0.02, "height": 0.7, "drift": 4, "from_top": true}, {"image": "day_far", "parallax": 0.06, "height": 0.85}, {"image": "hills_green", "parallax": 0.18, "height": 0.8}, {"image": "trees_green", "parallax": 0.42, "height": 0.8}], "roadside": ["pine", "dust", "", "pine", "sheep", "dust", "pine", ""]}
+  ],
+  "seasons": [
+    {"id": "winter", "name": "Winter", "months": [11, 12, 1, 2, 3], "forage": false, "ground": "#e6edf6", "field_wash": "rgba(236,243,252,0.62)", "layers": {"day_far": "day_far_snow", "hills_tan": "hills_snow", "hills_green": "hills_snow", "hills_red": "hills_snow", "trees_green": "trees_snow", "peaks_day": "peaks_snow", "dusk_mid": "dusk_mid_snow", "dusk_trees": "dusk_trees_snow"}, "sprites": {"pine": "pine_snow", "sage": "sage_snow", "dust": "snow_puff"}, "parked_traffic": ["hotdog", "vendor"]},
+    {"id": "spring", "name": "Spring", "months": [4, 5], "ground_wash": "rgba(86,166,48,0.38)", "layers": {"day_far": "day_far_snow", "hills_tan": "hills_spring_low", "hills_green": "hills_spring"}, "sprites": {"": "flowers"}},
+    {"id": "summer", "name": "Summer", "months": [6, 7, 8]},
+    {"id": "fall", "name": "Fall", "months": [9, 10], "ground_wash": "rgba(206,132,30,0.34)", "layers": {"hills_tan": "hills_gold", "hills_green": "hills_gold", "trees_green": "trees_gold"}}
+  ]
+}

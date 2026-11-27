@@ -1,0 +1,23 @@
+[
+  { "name": "Mule deer", "mode": "poach", "pounds": 70, "speed": 34, "weight": 4, "sprite": "deer_walk", "flee": "deer_run", "size": 0.75, "fact": "Western deer named for its big, mule-like ears." },
+  { "name": "Elk", "mode": "poach", "pounds": 220, "speed": 28, "weight": 2, "sprite": "elk_walk", "flee": "elk_run", "size": 0.95, "fact": "The wapiti, second-largest member of the deer family." },
+  { "name": "Pronghorn", "mode": "poach", "pounds": 45, "speed": 62, "weight": 3, "sprite": "antelope_walk", "flee": "antelope_run", "size": 0.65, "fact": "The fastest land mammal in the Americas, up to 55 mph." },
+  { "name": "Mountain cottontail", "mode": "poach", "pounds": 2, "speed": 46, "weight": 4, "sprite": "rabbit_hop", "flee": "rabbit_hop", "size": 0.8, "fact": "A small western rabbit with black-tipped, rounded ears." },
+  { "name": "Jackalope", "mode": "poach", "pounds": 5, "speed": 90, "weight": 1, "sprite": "jackalope", "flee": "jackalope", "size": 0.8, "fact": "A legend credited to a Douglas taxidermist. Mostly antler." },
+
+  { "name": "Chokecherry", "mode": "forage", "food": 3, "weight": 3, "sprite": "chokecherry", "photo": "plant_chokecherry", "size": 0.75, "fact": "Ripe fruit is edible; the pits and leaves are poisonous." },
+  { "name": "Serviceberry", "mode": "forage", "food": 3, "weight": 3, "sprite": "serviceberry", "photo": "plant_serviceberry", "size": 0.75, "fact": "Sweet, nutty berries long used by Indigenous peoples." },
+  { "name": "Prickly pear", "mode": "forage", "food": 3, "weight": 3, "sprite": "pricklypear", "photo": "plant_pricklypear", "size": 0.75, "fact": "The peeled, de-seeded fruit can be eaten raw." },
+  { "name": "Arrowleaf balsamroot", "mode": "forage", "food": 4, "weight": 2, "sprite": "balsamroot", "photo": "plant_balsamroot", "size": 0.75, "fact": "Leaves, cooked roots and seeds are edible." },
+  { "name": "Prairie onion", "mode": "forage", "food": 2, "weight": 3, "sprite": "wild_onion", "photo": "plant_wild_onion", "size": 0.75, "fact": "Thin round leaves and a round head of cream flowers. Smells of onion." },
+  { "name": "Sego lily", "mode": "forage", "food": 2, "weight": 2, "sprite": "sego_lily", "photo": "plant_sego_lily", "size": 0.75, "fact": "Utah's state flower, also native to Wyoming. Easy to mistake for death camas when not in bloom." },
+  { "name": "Cattail", "mode": "forage", "food": 3, "weight": 2, "sprite": "cattail", "photo": "plant_cattail", "size": 0.75, "fact": "Cooked rhizomes and peeled young stems are edible, from clean water." },
+  { "name": "Death camas", "mode": "forage", "food": 0, "weight": 4, "sprite": "death_camas", "photo": "plant_death_camas", "size": 0.75, "poison": true, "fact": "Very poisonous. V-folded leaves, a tall tapering spike of cream stars, no onion smell." },
+
+  {"name": "Day-old bagels", "mode": "scavenge", "food": 3, "weight": 4, "sprite": "bagels", "size": 0.75, "fact": "Hard enough to patch a tire. Still bagels."},
+  {"name": "Dented cans", "mode": "scavenge", "food": 4, "weight": 3, "sprite": "cans", "size": 0.75, "fact": "No labels, no problem. Dinner is a surprise."},
+  {"name": "Wilted produce", "mode": "scavenge", "food": 3, "weight": 3, "sprite": "produce", "size": 0.75, "fact": "Compost-adjacent. Calls itself organic."},
+  {"name": "Pizza crusts", "mode": "scavenge", "food": 2, "weight": 3, "sprite": "pizza", "size": 0.75, "fact": "Only the crusts. Somebody had priorities."},
+  {"name": "Mystery burrito", "mode": "scavenge", "food": 0, "weight": 4, "sprite": "burrito", "size": 0.75, "poison": true, "fact": "It is green, it is moving, and it smells. Leave it."},
+  {"name": "Old sock", "mode": "scavenge", "food": 0, "weight": 3, "sprite": "sock", "size": 0.75, "fact": "Not food. Never was."}
+]

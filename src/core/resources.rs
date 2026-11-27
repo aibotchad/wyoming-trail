@@ -1,22 +1,20 @@
 //! Consumables and money the party carries.
 
+use std::collections::BTreeMap;
+
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Resources {
     pub money: f64,
-    /// Meals of food.
+    /// Food servings.
     pub food: u32,
-    /// Bottles/packs of water (M3).
-    pub water: u32,
-    /// Shells/cartridges (M3 hunt).
-    pub ammo: u32,
-    pub hunting_license: bool,
-    /// First-aid doses.
-    pub medicine: u32,
-    /// One roadside emergency kit.
-    pub emergency_kit: bool,
-    pub cooler_ice: bool,
+    /// How many of those servings are wild (poached or foraged), and so can
+    /// be sold.
+    #[serde(default)]
+    pub wild: u32,
+    /// Item id → units carried.
+    pub inventory: BTreeMap<String, u32>,
 }
 
 impl Resources {
@@ -29,13 +27,28 @@ impl Resources {
         true
     }
 
-    /// Take meals of food if we have them.
-    pub fn take_food(&mut self, meals: u32) -> bool {
-        if self.food < meals {
-            return false;
+    /// Lose up to `amount` dollars (fines, scams) without going negative.
+    pub fn lose_money(&mut self, amount: f64) {
+        self.money = (self.money - amount).max(0.0);
+    }
+
+    pub fn count(&self, id: &str) -> u32 {
+        self.inventory.get(id).copied().unwrap_or(0)
+    }
+
+    pub fn add_item(&mut self, id: &str, units: u32) {
+        *self.inventory.entry(id.to_string()).or_insert(0) += units;
+    }
+
+    /// Use up one unit if we have it.
+    pub fn use_item(&mut self, id: &str) -> bool {
+        match self.inventory.get_mut(id) {
+            Some(n) if *n > 0 => {
+                *n -= 1;
+                true
+            }
+            _ => false,
         }
-        self.food -= meals;
-        true
     }
 }
 
@@ -52,16 +65,16 @@ mod tests {
         assert!(r.pay(99.0));
         assert!(!r.pay(100.0));
         assert_eq!(r.money, 1.0);
+        r.lose_money(50.0);
+        assert_eq!(r.money, 0.0);
     }
 
     #[test]
-    fn food_taken_when_available() {
-        let mut r = Resources {
-            food: 3,
-            ..Default::default()
-        };
-        assert!(r.take_food(3));
-        assert!(!r.take_food(1));
-        assert_eq!(r.food, 0);
+    fn items_run_out() {
+        let mut r = Resources::default();
+        r.add_item("duct_tape", 1);
+        assert!(r.use_item("duct_tape"));
+        assert!(!r.use_item("duct_tape"));
+        assert!(!r.use_item("banjo"));
     }
 }
