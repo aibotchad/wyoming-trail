@@ -1,47 +1,46 @@
 {
+  "any": [
+    {"name": "Thrown shoe", "ride": "horse", "weight": 4, "text": "Dolly throws a shoe. You walk her to a farrier who charges by the sigh.", "effect": {"days": 1, "money": -90, "mood": -6}, "needs": "horseshoes", "saved_text": "Dolly throws a shoe. You tack on a spare, only slightly sideways."},
+    {"name": "Rattlesnake", "ride": "horse", "weight": 3, "text": "A rattlesnake objects to the traffic. {name} leaves the saddle at speed.", "effect": {"health": -16, "mood": -5}, "one": true, "needs": "first_aid", "saved_text": "A rattlesnake objects. {name} leaves the saddle, and the first-aid kit handles the landing."},
+    {"name": "Dolly says no", "ride": "horse", "weight": 3, "text": "Dolly stops at a creek she has crossed a hundred times and declines. You wait her out.", "effect": {"days": 1, "mood": -6}},
+    {"name": "She knows the bar", "ride": "horse", "weight": 3, "text": "Dolly walks straight to a roadside bar from memory. {name} says it would be rude not to go in.", "effect": {"money": -70, "mood": 7, "health": -5}, "one": true},
+    {"name": "Open gate", "ride": "horse", "weight": 2, "text": "A rancher waves you through his pasture. Cars can't follow and you feel superior.", "effect": {"miles": -12, "mood": 6}},
+    {"name": "Parade", "ride": "horse", "weight": 1, "text": "You wander into a small-town parade and get paid to stay in it.", "effect": {"money": 90, "mood": 6}},
+    { "name": "GPS shortcut", "ride": "motor", "weight": 3, "text": "The GPS says 'turn left' with total confidence. Left is a two-track ending at a stock tank and one disappointed cow.", "effect": { "miles": 18, "mood": -6 }, "needs": "road_atlas", "saved_text": "The GPS says 'turn left' into a stock tank. {name} checks the paper atlas and vetoes the robot.", "saved_effect": { "mood": 3 } },
+    { "name": "Recalculating", "ride": "motor", "weight": 2, "text": "The GPS loses signal, panics and sends you back the way you came. Nobody notices for half an hour.", "effect": { "miles": 30, "mood": -8 }, "needs": "road_atlas", "saved_text": "The GPS loses signal. {name} unfolds the paper atlas like a hero, and refolds it like a villain.", "saved_effect": { "mood": 3 } },
+    { "name": "Wrong Springs", "ride": "motor", "weight": 1, "text": "You asked for one Springs and the GPS picked another. The voice does not apologize.", "effect": { "miles": 22, "mood": -5 }, "needs": "road_atlas", "saved_text": "The GPS offers the wrong Springs. The atlas disagrees, and the atlas wins." },
+    { "name": "Flat tire", "ride": "motor", "weight": 4, "text": "BANG. The tire gives up. Without a spare, you wait half a day for a rancher who lectures you the entire time.", "effect": { "days": 1, "money": -80, "mood": -8 }, "needs": "spare_tire", "saved_text": "BANG. You swap in the spare and are rolling again before anyone can offer unhelpful advice." },
+    { "name": "Overheating", "ride": "motor", "weight": 3, "text": "The radiator hose splits. You lose a day while a man named 'Doc', who is not a doctor, works on it.", "effect": { "days": 1, "money": -120, "mood": -5 }, "needs": "duct_tape", "saved_text": "The radiator hose splits. Duct tape. Obviously. Nobody even has to discuss it." },
+    { "name": "Dead battery", "ride": "motor", "weight": 3, "text": "The battery is flat because somebody charged a leaf blower off it. You pay a stranger for a jump.", "effect": { "money": -60, "mood": -5 }, "needs": "jumper_cables", "saved_text": "The battery is flat. Your jumper cables and a passing minivan solve it." },
+    { "name": "Gas station burrito", "weight": 3, "text": "{name} ate a burrito that had been rotating since spring. There is no toilet paper. We will not discuss the sock.", "effect": { "health": -12, "mood": -15 }, "one": true, "needs": "toilet_paper", "saved_text": "{name} ate a burrito that had been rotating since spring. Your foresight in paper goods saves the entire trip." },
+    { "name": "Cousin Dwayne calls", "weight": 2, "text": "Dwayne needs $75 wired immediately for reasons involving a canoe and 'a guy'. You cave.", "effect": { "money": -75, "mood": -3 } },
+    { "name": "Very awake stranger", "ride": "motor", "weight": 2, "text": "A man with no sleep and six teeth 'fixes' your engine for free. It now uses more gas and plays one radio station.", "effect": { "fuel": -4, "mood": -4 } },
+    { "name": "Twisted ankle", "weight": 2, "text": "{name} attempts a tailgate backflip. It goes about how you'd think.", "effect": { "health": -18, "mood": -4 }, "one": true, "needs": "first_aid", "saved_text": "{name} attempts a tailgate backflip. The first-aid kit earns its keep.", "saved_effect": { "mood": 2 } },
+    { "name": "Long silent stretch", "weight": 2, "text": "The radio dies and your party runs out of things to say. Someone starts humming. It gets ugly.", "effect": { "mood": -15 }, "needs": "banjo", "saved_text": "The radio dies, so {name} plays the banjo. Badly. Spirits somehow soar.", "saved_effect": { "mood": 10 } },
+    { "name": "Scratch ticket", "weight": 1, "text": "{name} wins on a scratch ticket and is immediately unbearable about it.", "effect": { "money": 100, "mood": 6 }, "one": true },
+    { "name": "Roadside jerky", "weight": 1, "text": "A rancher's widow hands you a sack of homemade jerky and refuses to say what animal.", "effect": { "food": 8, "mood": 4 } }
+  ],
   "highway": [
-    {
-      "name": "Wind on the high plains",
-      "text": "Crosswinds push the pickup around. The driver eases off and holds the wheel steady; nobody gets hurt, everyone's ears ring.",
-      "weight": 1
-    },
-    {
-      "name": "Stray goat on the roadway",
-      "text": "A goat strides across the lane with complete confidence. The driver threads the needle; the goat is unimpressed.",
-      "weight": 1
-    }
+    { "name": "Crosswind", "weight": 3, "text": "A gust launches your cooler lid, then your snacks, toward Nebraska.", "effect": { "food": -6, "mood": -4 } },
+    { "name": "Speed trap", "ride": "motor", "weight": 2, "text": "A trooper clocks you, then spends an hour searching the truck. He finds only fourteen empty energy drinks. Ticket.", "effect": { "money": -110, "mood": -6 } },
+    { "name": "Wind closure", "ride": "motor", "weight": 2, "text": "The highway closes for wind. You spend a day at a truck stop watching a semi nap on its side.", "effect": { "days": 1, "mood": -5 } }
   ],
   "basin": [
-    {
-      "name": "Sagebrush haze",
-      "text": "Dust and sage smell fill the cab after a dry stretch. A stop and a shake-out clears the air for all of you.",
-      "weight": 1
-    }
+    { "name": "Crystal salesman", "weight": 2, "text": "A twitchy man at a pullout sells you 'healing crystals'. They are rock salt. It is the safest thing he's ever sold.", "effect": { "money": -40, "mood": -2 } },
+    { "name": "Pronghorn standoff", "ride": "motor", "weight": 2, "text": "Forty pronghorn block the road and stare. You burn gas idling until they get bored.", "effect": { "fuel": -2 } },
+    { "name": "Raccoon heist", "weight": 2, "text": "A raccoon unzips the grub box like it's done this before. It has.", "effect": { "food": -8, "mood": -3 } }
   ],
   "mountain": [
-    {
-      "name": "High-country switchbacks",
-      "text": "Hairpin after hairpin under open sky. The view is spectacular; the ride is not for those who love a soft stomach.",
-      "weight": 1
-    },
-    {
-      "name": "Elk crossing",
-      "text": "A small herd stands mid-road. The engine ticks down to idle; the elk debate for a while, then move on.",
-      "weight": 1
-    }
+    { "name": "July blizzard", "ride": "motor", "weight": 3, "text": "It snows. In whatever month this is. You sit it out in the cab, sharing one blanket and many regrets.", "effect": { "days": 1, "health": -6, "mood": -8 } },
+    { "name": "Curious bear", "ride": "motor", "weight": 2, "text": "A bear opens the cooler and then the truck. Everyone leaves through the other door. Some knees are skinned.", "effect": { "food": -10, "health": -8, "mood": -8 }, "needs": "bear_spray", "saved_text": "A bear approaches. One puff of bear spray and it remembers an appointment." },
+    { "name": "Steep grade", "ride": "motor", "weight": 2, "text": "The truck climbs at a walking pace, drinking fuel like it's free.", "effect": { "fuel": -3 } }
   ],
   "valley": [
-    {
-      "name": "River crossing",
-      "text": "A bridge over spring water — the driver slows for the washboard on the approach and comes out the far side without spilling a drink.",
-      "weight": 1
-    }
+    { "name": "Hot dog stand", "weight": 2, "text": "A roadside stand sells suspiciously cheap hot dogs. Everyone is thrilled, for now.", "effect": { "money": -15, "food": 4, "mood": 8 } },
+    { "name": "Mosquitoes", "weight": 2, "text": "Mosquitoes the size of grouse. {name} loses a noticeable amount of blood.", "effect": { "health": -8, "mood": -5 }, "one": true }
   ],
   "park": [
-    {
-      "name": "Bison traffic",
-      "text": "Bison stroll onto the park road. You stop, watch, and let them go. It's exactly why the trip was worth making.",
-      "weight": 1
-    }
+    { "name": "Bison jam", "ride": "motor", "weight": 3, "text": "Bison stroll down the road. You wait, engine running, and nobody pets the fluffy cows.", "effect": { "fuel": -1, "mood": 5 } },
+    { "name": "Selfie incident", "weight": 1, "text": "{name} tries for an elk selfie. The elk has opinions.", "effect": { "health": -15 }, "one": true, "needs": "bear_spray", "saved_text": "{name} tries for an elk selfie. You wave the bear spray and {name} thinks better of it." }
   ]
 }

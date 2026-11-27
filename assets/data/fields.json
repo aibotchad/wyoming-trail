@@ -1,0 +1,9 @@
+[
+  {"id": "field_grassland", "place": "Thunder Basin National Grassland", "terrains": ["HighPlains"], "horizon": 0.68, "sky": 0.42},
+  {"id": "field_steppe", "place": "Sagebrush steppe", "terrains": ["SagebrushBasin", "Badlands"], "horizon": 0.38, "sky": 0.32},
+  {"id": "field_ferris", "place": "Ferris Mountains foothills", "terrains": ["Badlands", "SagebrushBasin"], "horizon": 0.42, "sky": 0.34},
+  {"id": "field_meadow", "place": "Bighorn meadow", "terrains": ["RiverValley", "GeyserBasin", "MountainPass"], "horizon": 0.36, "sky": 0.3},
+  {"id": "field_sagebrush", "place": "Sagebrush flats", "terrains": ["SagebrushBasin", "HighPlains"], "horizon": 0.34, "sky": 0.3},
+  {"id": "field_bluerange", "place": "High prairie below the mountains", "terrains": ["MountainPass", "RiverValley", "HighPlains"], "horizon": 0.29, "sky": 0.28},
+  {"id": "field_dumpster", "place": "Inside the dumpster behind the grocery", "terrains": [], "horizon": 0.31, "sky": 0.31, "scavenge": true, "covers": ["trash_bag", "box_pile", "paper_heap"]}
+]

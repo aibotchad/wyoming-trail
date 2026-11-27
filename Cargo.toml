@@ -24,10 +24,13 @@ web-sys = { version = "0.3", features = [
     "Element",
     "HtmlElement",
     "HtmlCanvasElement",
+    "HtmlImageElement",
     "CanvasRenderingContext2d",
     "TextMetrics",
     "KeyboardEvent",
-    "MouseEvent",
+    "PointerEvent",
+    "WheelEvent",
+    "MediaQueryList",
     "Storage",
 ] }
 
@@ -37,3 +40,5 @@ getrandom = { version = "0.2", features = ["js"] }
 [profile.release]
 opt-level = "s"
 lto = true
+codegen-units = 1
+panic = "abort"

@@ -6,13 +6,17 @@ You are a game developer building Wyoming Trail, a text-and-sprite travel RPG in
 
 ## Game Summary
 
-The player leads a small road-trip party (the driver plus three friends or family) from Cheyenne toward Yellowstone. The map is a network of real Wyoming towns, landmarks, and highways, not a single line. At every junction the player chooses which road to take, weighing distance, fuel range, terrain, weather, services, and scenery. Along the way the party drives, burns fuel, eats, hunts, and meets NPCs (truckers, rangers, ranchers, hitchhikers, mechanics, game wardens, locals). Random events strike: wind closures, blizzards, wildlife, breakdowns, long gaps between gas stations. The player wins by reaching Yellowstone (by any entrance) with at least one party member still on the trip. The trip fails if the truck is stranded with no money or fuel and no way to get help, or the whole party has left the trip.
+The player leads a small road-trip party (the driver plus three friends or family) from Lander to wherever their job's mission takes them (since 2026-11-26 each profession has its own goal). The map is a network of real Wyoming towns, landmarks, and highways, not a single line. At every junction the player chooses which road to take, weighing distance, fuel range, terrain, weather, services, and scenery. Along the way the party drives, burns fuel, eats, hunts, and meets NPCs (truckers, rangers, ranchers, hitchhikers, mechanics, game wardens, locals). Random events strike: wind closures, blizzards, wildlife, breakdowns, long gaps between gas stations. The player wins by reaching Yellowstone (by any entrance) with at least one party member still on the trip. The trip fails if the truck is stranded with no money or fuel and no way to get help, or the whole party has left the trip.
 
 ## Tone & Style
 
 - Retro Oregon Trail feel: menu-driven screens, simple blocky/pixel visuals, short punchy event text, a little dry humor. The setting is modern (gas stations, motels, cell phones, highways, GPS, diners, CB radio).
 - Educational flavor: each landmark has a short, accurate fun fact (2-4 sentences). Verify facts if unsure. If you cannot verify a detail, leave it out rather than invent it.
-- Family-friendly. Party members who reach 0 health are taken to a hospital and leave the trip (no deaths). Hunting is shown as a simple, non-graphic timing game. Do not glorify reckless driving.
+- Adult comedy: redneck and meth jokes (owner request, 2026-11-26). The title screen opens with "If you think this is full of Redneck and meth jokes then you'd be correct". No drug instructions, no jokes about real private people, and every joke is labelled as made up, apart from the true facts. Party members who reach 0 health are taken to a hospital and leave the trip (no deaths). Hunting is shown as a simple, non-graphic timing game. Do not glorify reckless driving.
+
+## Owner changes (2026-11-26)
+
+These override anything below: per-profession missions; redneck jobs poach and hippie jobs forage in a field minigame (no licence); animated parallax drive view; bundled CC0 art and a pixel font.
 
 ## Tech Stack (required)
 
@@ -58,7 +62,7 @@ The player leads a small road-trip party (the driver plus three friends or famil
 - Each road (edge) has: from, to, highway name, real driving distance, terrain type, speed/pace modifier, services-gap warning, seasonal risk (wind, snow, construction, wildlife), scenery rating, event table id, and NPC encounter table id.
 - At every node with more than one outgoing road, show a Road Choice screen: road name, distance, terrain, last known conditions, services ahead, and a hint about hazards or scenery. Info can be incomplete or wrong until a local NPC, CB radio, or phone/GPS update improves it.
 - The player may backtrack (costs fuel, time, and morale). Dead ends and long gaps exist, so planning fuel range is a core tension.
-- There must be at least 3 meaningfully different routes from Cheyenne to a Yellowstone entrance. Different routes should offer different landmarks, NPCs, hazards, and costs. Reaching Yellowstone through different entrances (South via Grand Teton, East via Cody) is a valid win.
+- There must be at least 3 meaningfully different routes from Lander to a Yellowstone entrance. Different routes should offer different landmarks, NPCs, hazards, and costs. Reaching Yellowstone through different entrances (South via Grand Teton, East via Cody) is a valid win.
 - Closed roads are removed from the choices until they reopen, which forces rerouting.
 
 ## Hunting Minigame (required)
@@ -111,7 +115,7 @@ Two kinds of NPCs, both data-driven in `npcs.json` and `dialogue.json`:
 ## Rules
 
 - Simplest thing that works first, then iterate. No speculative features. Put new ideas in the Backlog.
-- Use placeholder art (colored shapes, simple pixel sprites drawn in code) and generated or no audio until told otherwise. No external network calls at runtime.
+- Bundle freely licensed photos (Wikimedia Commons) and public-domain map tiles, with credits; generated or no audio until told otherwise. No external network calls at runtime.
 - Support keyboard and mouse/touch. The canvas must scale to desktop and mobile widths.
 - Persist saves with localStorage via web-sys; handle failure gracefully.
 - Comment non-obvious logic and name things clearly.

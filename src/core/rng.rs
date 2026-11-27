@@ -8,12 +8,10 @@ use rand::rngs::StdRng;
 use rand::{RngCore, SeedableRng};
 
 #[derive(Debug, Clone)]
-#[allow(dead_code)] // exercised by tests; first gameplay consumer: M2 (road events).
 pub struct Rng {
     engine: StdRng,
 }
 
-#[allow(dead_code)] // exercised by tests; first gameplay consumer: M2 (road events).
 impl Rng {
     /// Derive the day-specific stream from the run seed.
     pub fn for_day(seed: u64, day: u32) -> Self {

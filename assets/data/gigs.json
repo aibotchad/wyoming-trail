@@ -1,0 +1,9 @@
+[
+  { "id": "roofer", "name": "Join a roofing crew", "days": 3, "pay": 420, "fatigue": 35, "mood": -6, "pitch": "Cash on payday. Ladder optional.", "done": "You collect your first paycheck and vanish, in the finest roofing tradition. Half a roof waves goodbye." },
+  { "id": "flagger", "name": "Road flagger", "days": 2, "pay": 220, "fatigue": 15, "mood": -14, "pitch": "Hold the sign. Be the sign.", "done": "You spin SLOW into STOP for two days and learn what drivers think of you. One of them threw a taco." },
+  { "id": "dishes", "name": "Wash dishes at the diner", "days": 1, "pay": 80, "fatigue": 10, "mood": -4, "food": 6, "pitch": "Pay, plus whatever's under the heat lamp.", "done": "You are paid in cash and a to-go sack of gravy-adjacent items." },
+  { "id": "plasma", "name": "Sell plasma", "days": 1, "pay": 70, "health": -10, "mood": -3, "pitch": "Your body is a side hustle.", "done": "You leave with cash, a juice box and a new respect for gravity." },
+  { "id": "hay", "name": "Buck hay bales", "days": 2, "pay": 240, "fatigue": 30, "health": -4, "pitch": "Honest work. Dishonest back.", "done": "The rancher pays you, then asks if you know anyone with a spine for hire." },
+  { "id": "fireworks", "name": "Run a fireworks stand", "days": 2, "pay": 190, "mood": 6, "health": -6, "pitch": "Retail, with eyebrows at stake.", "done": "Sales were brisk. So was the one demonstration. Eyebrows are a construct anyway." },
+  { "id": "photos", "name": "Pose as an authentic cowboy", "days": 1, "pay": 110, "mood": -5, "at": ["jackson", "cody", "grand_teton"], "pitch": "Tourists pay. Never mind your sneakers.", "done": "Forty strangers now believe you rope cattle. You have a rental hat and no regrets." }
+]

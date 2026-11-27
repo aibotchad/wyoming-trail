@@ -1,0 +1,10 @@
+[
+  { "id": "cowboy", "stand": 1, "walk": [1, 2], "aim": 0, "armed": true },
+  { "id": "warrior", "stand": 1, "walk": [0, 1, 2, 1] },
+  { "id": "ranger", "stand": 1, "walk": [0, 1, 2, 1] },
+  { "id": "townfolk", "stand": 1, "walk": [0, 1, 2, 1] },
+  { "id": "mage", "stand": 1, "walk": [0, 1, 2, 1] },
+  { "id": "ninja", "stand": 1, "walk": [0, 1, 2, 1] },
+  { "id": "healer", "stand": 1, "walk": [0, 1, 2, 1] },
+  { "id": "trust", "stand": 1, "walk": [0, 1, 2, 1] }
+]

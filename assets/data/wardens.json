@@ -1,0 +1,5 @@
+[
+  {"name": "Written up", "weight": 5, "fine": 150, "text": "A game warden finds your cooler. He takes the meat and writes you up."},
+  {"name": "Full citation", "weight": 3, "fine": 450, "ammo": true, "text": "A warden with a clipboard and a grudge. Meat and ammo confiscated, and a citation with several zeroes."},
+  {"name": "Task force", "weight": 2, "fine": 950, "ammo": true, "days": 1, "text": "Game and Fish task force! Meat and ammo gone, a huge fine, and a night explaining yourself in county lockup."}
+]

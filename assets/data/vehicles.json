@@ -1,0 +1,8 @@
+[
+  { "id": "rusty", "name": "Rusty '84 pickup", "price": 900, "tank_gallons": 18, "mpg": 14, "sprite": "pickup_rusty", "blurb": "Smells like a crime scene audition." },
+  { "id": "halfton", "name": "Used half-ton", "price": 1900, "tank_gallons": 25, "mpg": 19, "sprite": "halfton", "blurb": "Only one door is a different color." },
+  { "id": "diesel", "name": "Diesel workhorse", "price": 3200, "tank_gallons": 35, "mpg": 22, "sprite": "diesel", "blurb": "Louder than your family reunions." },
+  { "id": "prius", "name": "2012 Prius (faded Hillary sticker)", "price": 1800, "tank_gallons": 11.9, "mpg": 48, "sprite": "prius", "blurb": "Silent, thrifty, and the sticker has faded to just 'HILL'. Locals have questions." },
+  {"id": "horse", "name": "Dolly, a bay quarter horse", "price": 0, "tank_gallons": 40, "mpg": 4, "sprite": "horse", "ride": "horse", "day_miles": 35, "for_sale": false, "blurb": "Sober, patient and not legally a motor vehicle."},
+  {"id": "sprinter", "name": "Decked-out Sprinter van", "price": 0, "tank_gallons": 24.5, "mpg": 18, "sprite": "sprinter", "for_sale": false, "comfy": true, "blurb": "Solar, a real bed, an espresso machine and a dreamcatcher the size of a tire."}
+]

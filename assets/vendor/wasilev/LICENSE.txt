@@ -1,0 +1,4 @@
+Cowboy with rifle by Krasi Wasilev (http://freegameassets.blogspot.com)
+https://opengameart.org/content/cowboy-with-rifle
+License: Creative Commons Attribution 3.0, https://creativecommons.org/licenses/by/3.0/
+Changes made here: four of the directions repacked into the game's sprite sheet.
